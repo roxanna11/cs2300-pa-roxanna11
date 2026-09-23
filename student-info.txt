@@ -1,8 +1,8 @@
 CS2300 Computational Linear Algebra
 Student Information
 
-Full Name:
-UCCS Email:
-Course Section:
-GitHub Username:
-Date:
+Full Name: Roxann Wexler
+UCCS Email: rwexler@uccs.edu
+Course Section: 001
+GitHub Username: roxanna11
+Date: 09-01-2026
