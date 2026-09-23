@@ -151,10 +151,15 @@ public class Line3D
     // Returns the point on this line at parameter t
     public Vector3D Evaluate(double t)
     {
-        // TODO: implement parametric line evaluation
+        // TODO: implement parametric line evaluation --- p(t) = p  + t D
         Console.WriteLine("  TODO: Evaluate() not implemented");
+        //get points + t * direction 
+        double x = Point.X + (t * Direction.X);
+        double y = Point.Y + (t * Direction.Y);
+        double z = Point.Z + (t * Direction.Z);
 
-        return Point;
+       
+        return Vector3D( x, y, z );
     }
 }
 
