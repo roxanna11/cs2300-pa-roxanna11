@@ -59,7 +59,7 @@ public class Vector3D
         // TODO: implement vector subtraction
         //Console.WriteLine("  TODO: Subtract() not implemented");
         //subtract each vector unit for the other respectivly 
-        return new Vector3D(X - other.X , Y - other.Y , Z - other.Y);
+        return new Vector3D(X - other.X , Y - other.Y , Z - other.Z);
     }
 
     // Scalar multiplication
@@ -67,13 +67,14 @@ public class Vector3D
     {
         return new Vector3D(X * scalar,
                             Y * scalar,
-                            Y * scalar);
+                            Z * scalar);
+        //used the Y scalar 
     }
 
     // Computes vector magnitude
     public double Magnitude()
-    {
-        return X * X + Y * Y + Z * Z;
+    {   //was giving just the mag sqaured 
+        return Math.Sqrt(X * X + Y * Y + Z * Z);
     }
 
     // Normalizes a vector (returns a unit vector in the same direction)
@@ -85,10 +86,10 @@ public class Vector3D
         {
             return null;
         }
-
-        return new Vector3D(X / 10,
-                            Y / 10,
-                            Z / 10);
+        //divided by 10 no mag
+        return new Vector3D(X / mag,
+                            Y / mag,
+                            Z / mag);
     }
 
     // Computes the dot product of two vectors
