@@ -57,7 +57,7 @@ public class Vector3D
     public Vector3D Subtract(Vector3D other)
     {
         // TODO: implement vector subtraction
-        Console.WriteLine("  TODO: Subtract() not implemented");
+        //Console.WriteLine("  TODO: Subtract() not implemented");
         //subtract each vector unit for the other respectivly 
         return new Vector3D(X - other.X , Y - other.Y , Z - other.Y);
     }
@@ -103,7 +103,7 @@ public class Vector3D
     public Vector3D Cross(Vector3D other)
     {
         // TODO: implement the cross product
-        Console.WriteLine("  TODO: Cross() not implemented");
+        //Console.WriteLine("  TODO: Cross() not implemented");
 
         //take each term multiply and subtract by the others - 
         double x = Y * other.Z - Z * other.Y;
@@ -117,7 +117,7 @@ public class Vector3D
     public double DistanceTo(Vector3D other)
     {
         // TODO: implement the distance calculation
-        Console.WriteLine("  TODO: DistanceTo() not implemented");
+       // Console.WriteLine("  TODO: DistanceTo() not implemented");
         //sqaure difference of each term - sum them - take square root 
         double dx = other.X - X;
         double dy = other.Y - Y;
@@ -152,7 +152,7 @@ public class Line3D
     public Vector3D Evaluate(double t)
     {
         // TODO: implement parametric line evaluation --- p(t) = p  + t D
-        Console.WriteLine("  TODO: Evaluate() not implemented");
+       // Console.WriteLine("  TODO: Evaluate() not implemented");
         //get points + t * direction 
         double x = Point.X + (t * Direction.X);
         double y = Point.Y + (t * Direction.Y);
