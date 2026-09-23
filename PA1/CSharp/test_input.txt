@@ -1,0 +1,41 @@
+# CS 2300 - PA1 Warehouse Navigation Geometry Engine
+# Sample warehouse command file.
+#
+# Lines beginning with # are comments and are ignored.
+#
+# Command reference:
+#   ROBOT  x y z                          set the robot's starting position
+#   ITEM   x y z                          place an inventory item
+#   WALL   axis value                     axis-aligned wall (axis is X, Y, or Z)
+#   WALL3  x1 y1 z1 x2 y2 z2 x3 y3 z3     wall through three given points
+#   MOVE   dx dy dz                       attempt a movement
+#   ROUTE  px py pz dx dy dz              define a parametric route
+#   T      t                              evaluate the route at parameter t
+
+ROBOT 0 0 0
+
+ITEM 6 3 2
+
+# Axis-aligned warehouse boundaries
+WALL X 12
+WALL Y 9
+WALL Z 6
+
+# A diagonal wall defined by three of its points
+WALL3 12 0 0 0 12 0 0 0 12
+
+# A clear move toward the item
+MOVE 3 4 0
+
+# A move that should place the robot within pickup range of the item
+MOVE 2.5 -1 2
+
+# A move that should be rejected: it would carry the robot past WALL X = 12
+MOVE 8 0 0
+
+# Route prediction
+ROUTE 0 0 0 2 3 6
+
+T 0.5
+T 1
+T 2.5
