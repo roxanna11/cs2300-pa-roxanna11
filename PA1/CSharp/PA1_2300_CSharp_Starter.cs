@@ -159,7 +159,7 @@ public class Line3D
         double z = Point.Z + (t * Direction.Z);
 
        
-        return Vector3D( x, y, z );
+        return new Vector3D( x, y, z );
     }
 }
 
