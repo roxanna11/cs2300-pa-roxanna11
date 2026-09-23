@@ -58,8 +58,8 @@ public class Vector3D
     {
         // TODO: implement vector subtraction
         Console.WriteLine("  TODO: Subtract() not implemented");
-
-        return new Vector3D(0, 0, 0);
+        //subtract each vector unit for the other respectivly 
+        return new Vector3D(X - other.X , Y - other.Y , Z - other.Y);
     }
 
     // Scalar multiplication
@@ -93,8 +93,8 @@ public class Vector3D
 
     // Computes the dot product of two vectors
     public double Dot(Vector3D other)
-    {
-        return X * other.Y +
+    {   //typo - X * other.Y 
+        return X * other.X +
                Y * other.Y +
                Z * other.Z;
     }
@@ -105,7 +105,12 @@ public class Vector3D
         // TODO: implement the cross product
         Console.WriteLine("  TODO: Cross() not implemented");
 
-        return new Vector3D(0, 0, 0);
+        //take each term multiply and subtract by the others - 
+        double x = Y * other.Z - Z * other.Y;
+        double y = Z * other.X - X * other.Z;
+        double z = X * other.Y - Y * other.X;
+
+        return new Vector3D(x, y, z);
     }
 
     // Calculates the distance between two points
@@ -113,8 +118,13 @@ public class Vector3D
     {
         // TODO: implement the distance calculation
         Console.WriteLine("  TODO: DistanceTo() not implemented");
+        //sqaure difference of each term - sum them - take square root 
+        double dx = other.X - X;
+        double dy = other.Y - Y;
+        double dz = other.Z - Z;
+        double solution = Math.Sqrt(dx *  dx + dy * dy + dz * dz);
 
-        return 0.0;
+        return solution;
     }
 
     public override string ToString()
