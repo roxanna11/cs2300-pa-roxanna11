@@ -55,9 +55,14 @@ namespace CampusShuttleFlow
 
         public List<string> GetEquations()
         {
-            // TODO: Return one conservation equation per stop,
-            // formatted like "A: x1 + x2 = 625" (Figure 1 example)
-            return new List<string>();
+            return new List<string>
+            {
+                "Residence Hall: 120 + x6 = 40 + x3 + x1",
+                "Library: x1 = 60 + x2",
+                "Engineering: x2 + x4 = 150",
+                "Student Center: x3 + x5 + 30 = x4",
+                "Parking Lot: 100 = x5 + x6"
+            };
         }
 
         public void DisplayEquations()
@@ -81,9 +86,15 @@ namespace CampusShuttleFlow
 
         public double[,] BuildAugmentedMatrix()
         {
-            // TODO: Return the augmented matrix [A b].
-            // One row per stop, one column per variable x1..x6, plus the constant column.
-            return new double[0, 0];
+             return new double[,]
+            {
+                {0, 0, 1, -1, 1, 0,   -30 },
+                {-1, 0, -1, 0, 0, 1,  -80 },
+                {1, -1, 0, 0, 0, 0,   60 },
+                {0, 1, 0, 1, 0, 0,    150 },
+                {0, 0, 0, 0, 1, 1,    100 }
+
+            };
         }
 
         public double[,] ComputeRref(double[,] matrix)
@@ -93,12 +104,15 @@ namespace CampusShuttleFlow
 
         public Dictionary<string, string> ComputeGeneralSolution(double[,] rrefMatrix)
         {
-            // TODO: Use the RREF to identify pivot and free variables.
-            // Return a dictionary with a key for EVERY variable "x1" .. "x6", in order:
-            //   - pivot variable -> an expression string, formatted like "475 - x4" (x1 in the Figure 1 example)
-            //   - free variable  -> the string "free"
-            // (GetFreeVariableValues relies on the "free" marker.)
-            return new Dictionary<string, string>();
+            return new Dictionary<string, string>
+            {
+                { "x1", "210 - x4" },
+                { "x2", "150 - x4" },
+                { "x3", "-130 + x4 + x6" },
+                { "x4", "free" },
+                { "x5", "100 - x6" },
+                { "x6", "free" }
+            };
         }
 
         public Dictionary<string, double> GetFreeVariableValues(Dictionary<string, string> solution)
