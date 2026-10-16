@@ -1,0 +1,186 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+
+namespace CampusShuttleFlow
+{
+    public class CampusShuttleNetwork
+    {
+        public static readonly string[] Variables = { "x1", "x2", "x3", "x4", "x5", "x6" };
+
+        private readonly List<string> stops;
+        private readonly List<string> routes;
+
+        public CampusShuttleNetwork()
+        {
+            stops = new List<string>
+            {
+                "Residence Halls",
+                "Library",
+                "Engineering",
+                "Student Center",
+                "Parking Lot"
+            };
+
+            routes = new List<string>
+            {
+                "x1: Residence Halls to Library",
+                "x2: Library to Engineering",
+                "x3: Residence Halls to Student Center",
+                "x4: Student Center to Engineering",
+                "x5: Parking Lot to Student Center",
+                "x6: Parking Lot to Residence Halls"
+            };
+        }
+
+        public void DisplayNetwork()
+        {
+            Console.WriteLine("Campus Shuttle Network");
+            Console.WriteLine("----------------------");
+
+            Console.WriteLine("Stops:");
+            foreach (string stop in stops)
+            {
+                Console.WriteLine("  - " + stop);
+            }
+
+            Console.WriteLine();
+
+            Console.WriteLine("Routes:");
+            foreach (string route in routes)
+            {
+                Console.WriteLine("  - " + route);
+            }
+        }
+
+        public List<string> GetEquations()
+        {
+            // TODO: Return one conservation equation per stop,
+            // formatted like "A: x1 + x2 = 625" (Figure 1 example)
+            return new List<string>();
+        }
+
+        public void DisplayEquations()
+        {
+            Console.WriteLine("System of Linear Equations");
+            Console.WriteLine("--------------------------");
+
+            List<string> equations = GetEquations();
+
+            if (equations.Count == 0)
+            {
+                Console.WriteLine("TODO");
+                return;
+            }
+
+            foreach (string equation in equations)
+            {
+                Console.WriteLine(equation);
+            }
+        }
+
+        public double[,] BuildAugmentedMatrix()
+        {
+            // TODO: Return the augmented matrix [A b].
+            // One row per stop, one column per variable x1..x6, plus the constant column.
+            return new double[0, 0];
+        }
+
+        public double[,] ComputeRref(double[,] matrix)
+        {
+            return MatrixTools.Rref(matrix);
+        }
+
+        public Dictionary<string, string> ComputeGeneralSolution(double[,] rrefMatrix)
+        {
+            // TODO: Use the RREF to identify pivot and free variables.
+            // Return a dictionary with a key for EVERY variable "x1" .. "x6", in order:
+            //   - pivot variable -> an expression string, formatted like "475 - x4" (x1 in the Figure 1 example)
+            //   - free variable  -> the string "free"
+            // (GetFreeVariableValues relies on the "free" marker.)
+            return new Dictionary<string, string>();
+        }
+
+        public Dictionary<string, double> GetFreeVariableValues(Dictionary<string, string> solution)
+        {
+            Dictionary<string, double> values = new Dictionary<string, double>();
+
+            foreach (var item in solution)
+            {
+                if (item.Value == "free")
+                {
+                    Console.Write("Enter a value for free variable " + item.Key + ": ");
+                    string input = Console.ReadLine();
+                    values[item.Key] = Convert.ToDouble(input, CultureInfo.InvariantCulture);
+                }
+            }
+
+            return values;
+        }
+
+        public Dictionary<string, double> ComputeFlowValues(
+            double[,] rrefMatrix,
+            Dictionary<string, double> freeValues)
+        {
+            // TODO: Using the RREF and the chosen free variable values,
+            // return a dictionary from every variable "x1" .. "x6" to its numeric value.
+            return new Dictionary<string, double>();
+        }
+
+        public bool IsFeasible(Dictionary<string, double> flows)
+        {
+            // TODO: A configuration is feasible if every route flow is nonnegative.
+            return false;
+        }
+
+        public void DisplayGeneralSolution(Dictionary<string, string> solution)
+        {
+            if (solution.Count == 0)
+            {
+                Console.WriteLine("TODO");
+                return;
+            }
+
+            foreach (var item in solution)
+            {
+                Console.WriteLine(item.Key + " = " + item.Value);
+            }
+        }
+
+        public void DisplayFlowValues(Dictionary<string, double> flows)
+        {
+            if (flows.Count == 0)
+            {
+                Console.WriteLine("TODO");
+                return;
+            }
+
+            foreach (var item in flows)
+            {
+                Console.WriteLine($"{item.Key} = {item.Value:F2}");
+            }
+        }
+
+        public void DisplayMatrix(double[,] matrix)
+        {
+            if (matrix.Length == 0)
+            {
+                Console.WriteLine("TODO");
+                return;
+            }
+
+            int rows = matrix.GetLength(0);
+            int cols = matrix.GetLength(1);
+
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    if (j > 0) Console.Write("  ");
+                    Console.Write($"{matrix[i, j],8:F3}");
+                }
+                Console.WriteLine();
+            }
+        }
+    }
+}
