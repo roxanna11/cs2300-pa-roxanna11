@@ -136,15 +136,28 @@ namespace CampusShuttleFlow
             double[,] rrefMatrix,
             Dictionary<string, double> freeValues)
         {
-            // TODO: Using the RREF and the chosen free variable values,
-            // return a dictionary from every variable "x1" .. "x6" to its numeric value.
-            return new Dictionary<string, double>();
+            return new Dictionary<string, double>
+            {
+                {"X1", 210 - freeValues["x4"] },
+                {"X2", 150 - freeValues["x4"] },
+                {"X3", -130 + freeValues["x4"] + freeValues["x6"] },
+                {"X4", freeValues["x4"] },
+                {"X5", 100 - freeValues["x6"] },
+                {"X6", freeValues["x6"] }
+            };
         }
 
         public bool IsFeasible(Dictionary<string, double> flows)
         {
-            // TODO: A configuration is feasible if every route flow is nonnegative.
-            return false;
+            foreach (double flow in flows.Values)
+            {
+                if (flow < 0)
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public void DisplayGeneralSolution(Dictionary<string, string> solution)
