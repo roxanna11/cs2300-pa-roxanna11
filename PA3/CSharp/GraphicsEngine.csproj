@@ -8,4 +8,10 @@
     <RootNamespace>GraphicsEngine</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Update="pa3_house.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
